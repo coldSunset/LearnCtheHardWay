@@ -1,0 +1,7 @@
+CFLAGS=-Wall -g 
+
+all: pointer_arithmetic
+
+clean: 
+	rm -f pointer
+
