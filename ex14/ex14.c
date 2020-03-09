@@ -1,48 +1,47 @@
 #include <stdio.h> 
+#include <ctype.h> 
+#include <string.h> 
+
+//forward declarations 
+int can_print_it(char ch); 
+void print_letters(char argv[]); 
+int stringlen[argc]; 
+void print_arguments(int argc, char* argv[])
+{
+	int i = 0; 
+	for(i= 0; i < argc; i++)
+	{
+		print_letters(argv[i]); 
+		stringlen[i] = strlen(argv[i]);
+	}
+}
+
+void print_letters(char arg[])
+{
+	int i =0; 
+	for (i=0; i < stringlen[i]; i++)
+	{
+		char ch = arg[i]; 
+
+		if(can_print_it(ch))
+		{
+		printf("'%c' == %d ", ch, ch); 
+		}
+	}
+	printf("\n"); 
+}
+
+int can_print_it(char ch)
+{
+	return isalpha(ch) || isblank(ch); 
+}
 
 int main(int argc, char* argv[])
 {
-	if(argc != 2)
-	{
-		printf("ERROR: You need one argument.\n"); 
-		//this is how you abort the program
-		return 1; 
-	}
+	print_arguments(argc, argv); 
 
-	int i =0 ; 
-	for(int i =0; argv[1][i] != '\0'; i++)
-	{
-		char letter = argv[1][i]; 
 
-		switch(letter)
-		{
-			case 'a': 
-			case 'A': 
-				printf("%d: 'A'\n", i ); 
-				break; 
-			case 'e': 
-			case 'E': 
-				printf("%d: 'E'\n", i); 
-				break; 
-			case 'i': 
-			case 'I': 
-				printf("%d: 'I'\n", i ); 
-				break; 
-			case 'o': 
-			case 'O':
-				printf("%d: 'O\n", i); 
-				break; 
-			case 'y': 
-			case 'Y': 
-			if( i>2)
-			{
-				printf("%d: 'Y'\n", i); 
-			} 
-			break; 
 
-		default: 
-			printf("%d: %c is not a vowel\n", i, letter); 
-		}
-	}
-	return 0; 
+
+	return 100; 
 }
