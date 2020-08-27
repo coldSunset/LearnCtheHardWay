@@ -24,7 +24,7 @@ struct Connection
 {
 	FILE *file; 
 	struct Database *db; 
-}
+};
 
 void error(const char *message)
 {
@@ -129,3 +129,83 @@ void Database_set(struct Connection *conn, int id, const char *name, const char 
 		error("Email copy failed"); 
 
 }
+
+void Database_get(struct Connection *conn, int id)
+{
+	struct Address *addr = &conn->db->rows[id]; 
+	if(addr->set)
+		Address_print(addr); 
+	else 
+		error("ID is not set");
+}
+
+void Database_delete(struct Connection *conn, int id)
+{
+	struct Address addr = {.id = id, .set=0};
+	conn->db->rows[id] = addr; 
+}
+
+void Database_list(struct Connection *conn)
+{
+ 	int i = 0; 
+ 	struct Database *db = conn->db; 
+
+ 	for(i=0; i<MAX_ROWS; i++)
+ 	{
+ 		struct Address *cur = &db->rows[i]; 
+
+ 		if(cur->set)
+ 		{
+ 			Address_print(cur); 
+ 		}
+ 	}
+
+ }
+
+ int main(int argc, char* argv[])
+ {
+ 	if(argc < 3)
+ 		error("USAGE: ex17 <dbfile> action [action param]");
+ 	char* filename = argv[1]; 
+ 	char action = argv[2][0]; 
+ 	struct Connection *conn = Database_open(filename, action); 
+ 	int id = 0; 
+
+ 	if(argc >3) id = atoi(argv[3]); //converts string into int
+ 	if(id >= MAX_ROWS) error("There's not that many records"); 
+
+ 	switch(action)
+ 	{
+ 		case 'c':
+ 			Database_create(conn); 
+ 			Database_write(conn); 
+ 			break;
+		case 'g': 
+			if(argc != 4)
+				error("Need an id to get"); 
+			Database_get(conn, id); 
+			break;
+		case 's': 
+			if(argc != 6)
+				error("Need id, name, email to set");
+
+			Database_set(conn, id, argv[4], argv[5]); 
+			Database_write(conn); 
+			break;
+		case 'd':
+			if(argc != 4)
+				error("Need id to delete");
+			Database_delete(conn, id);
+			Database_write(conn);
+			break; 
+		case 'l':
+			Database_list(conn); 
+			break; 
+		default: 
+			error("Invalid action: c=create, g=get, s=set, d=del, l=list");
+ 	}
+
+ 	Database_close(conn); 
+
+ 	return 0;
+ }
