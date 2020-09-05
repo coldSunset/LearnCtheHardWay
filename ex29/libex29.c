@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include "dbg.h"
 
+
 int print_a_message(const char* msg)
 {
 	printf("A STRING: %s\n", msg); 
@@ -12,9 +13,9 @@ int print_a_message(const char* msg)
 int uppercase(const char* msg)
 {
 	int i =0 ; 
-
+	int msg_len = sizeof(msg); 
 	//BUG: \0 termination problems 
-	for(i=0; msg[i] != '\0'; i++)
+	for(i=0; i<msg_len; i++)
 	{
 		printf("%c", toupper(msg[i])); 
 	}
@@ -27,9 +28,9 @@ int uppercase(const char* msg)
 int lowercase(const char* msg)
 {
 	int i =0; 
-
+	int msg_len = sizeof(msg); 
 	//BUG: \0 termination problems 
-	for(i = 0; msg[i] != '\0'; i++)
+	for(i=0; i<msg_len; i++)
 	{
 		printf("%c", tolower(msg[i])); 
 	}

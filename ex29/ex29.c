@@ -2,7 +2,7 @@
 #include "dbg.h"
 #include <dlfcn.h>
 
-typedef int(*lib_functions) (const char* data); 
+typedef int(*lib_function) (const char* data); 
 
 int main(int argc, char* argv[])
 {
