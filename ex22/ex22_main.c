@@ -50,5 +50,11 @@ int main(int argc, char* argv[])
 	scope_demo(count * 20); 
 
 	log_info("count after calling scope_demo: %d", count); 
+
+	// int theAge = THE_AGE; 
+	// log_info("Trying to access the Age variable: %i", theAge); 
+
+	log_info("Address of 'ratio' variable: %p", &ptr_ratio); 
+
 	return 0;
 }

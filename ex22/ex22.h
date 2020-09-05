@@ -4,7 +4,7 @@
 //make THE_SIZE in ex22.c available to other .c files 
 
 extern int THE_SIZE; 
-
+extern double *ptr_ratio; 
 //get and sets an internal static variable in ex22.c 
 
 int get_age(); 
