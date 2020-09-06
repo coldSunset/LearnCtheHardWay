@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "dbg.h"
-
+#include <string.h> 
 
 int print_a_message(const char* msg)
 {
@@ -13,7 +13,7 @@ int print_a_message(const char* msg)
 int uppercase(const char* msg)
 {
 	int i =0 ; 
-	int msg_len = sizeof(msg); 
+	int msg_len = strlen(msg); 
 	//BUG: \0 termination problems 
 	for(i=0; i<msg_len; i++)
 	{
@@ -21,16 +21,16 @@ int uppercase(const char* msg)
 	}
 
 	printf("\n"); 
-
+ 
 	return 0; 
 }
 
 int lowercase(const char* msg)
 {
 	int i =0; 
-	int msg_len = sizeof(msg); 
+	int msg_len = strlen(msg); 
 	//BUG: \0 termination problems 
-	for(i=0; i<msg_len; i++)
+	for(i=0; i < msg_len; i++)
 	{
 		printf("%c", tolower(msg[i])); 
 	}
