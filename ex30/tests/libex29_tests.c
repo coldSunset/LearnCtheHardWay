@@ -2,7 +2,7 @@
 #include <dlfcn.h> 
 
 typedef int (*lib_function) (const char* data); 
-char* lib_file = "build/libYOUR_LIBRARY.so"; 
+char* lib_file = "build/libex29.so"; 
 void* lib = NULL; 
 
 int check_function(const char* func_to_run, const char* data, int expected) 
@@ -29,7 +29,7 @@ char* test_dlopen()
 char* test_functions() 
 {
 	mu_assert(check_function("print_a_message", "Hello", 0), "print_a_message failed"); 
-	mu_assert(check_function("uppercase","Hello,0"),"uppercase failed.");
+	mu_assert(check_function("uppercase","Hello",0),"uppercase failed.");
 	mu_assert(check_function("lowercase","Hello",0), "lowercase failed."); 
 
 	return NULL; 
