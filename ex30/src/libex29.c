@@ -3,6 +3,8 @@
 #include "dbg.h"
 #include <string.h> 
 
+
+
 int print_a_message(const char* msg)
 {
 	printf("A STRING: %s\n", msg); 
@@ -42,5 +44,6 @@ int lowercase(const char* msg)
 
 int fail_on_purpose(const char* msg)
 {
+	(void)msg; 
 	return 1; 
 }

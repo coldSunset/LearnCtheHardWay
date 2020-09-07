@@ -7,7 +7,7 @@ void* lib = NULL;
 
 int check_function(const char* func_to_run, const char* data, int expected) 
 {
-	lib_function func = dlsysm(lib, func_to_run);
+	lib_function func = dlsym(lib, func_to_run);
 	check(func!=NULL, "Did not find %s function in the library %s: %s", func_to_run,lib_file,dlerror());  
 
 	int rc = func(data); 
@@ -37,7 +37,7 @@ char* test_functions()
 
 char* test_failures() 
 {
-	mu_assert(check_function("fail on purpose", "Hello",1), "fail_on_purpose should fail.");
+	mu_assert(check_function("fail_on_purpose", "Hello",1), "fail_on_purpose should fail.");
 	return NULL; 
 }
 
