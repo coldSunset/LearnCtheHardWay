@@ -51,7 +51,7 @@
 	
 #-----------------------------------------------------------------------------------------------------------
 SRC_DIR=./src
-LCTHW_DIR=$(SRC_DIR)/lcthw
+LCTHW_DIR=$(SRC_DIR)/liblcthw
 BUILD_DIR=./build
 TESTS_DIR=./tests
 
@@ -64,7 +64,7 @@ SOURCES=$(wildcard src/**/*.c src/*.c)
 OBJECTS=$(SOURCES:%.c=%.o)
 
 TEST_SOURCES=$(wildcard $(TESTS_DIR)/*_tests.c)
-TESTS=$(patsubst %.c, %.tst,$(TEST_SOURCES))
+TESTS=$(patsubst %.c, %,$(TEST_SOURCES))
 
 SLIB_TARGET=$(BUILD_DIR)/liblcthw.a
 DLIB_TARGET=$(patsubst %.a,%.so,$(SLIB_TARGET))
@@ -84,7 +84,7 @@ $(DLIB_TARGET): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS)
 
-$(TESTS_DIR)/%.tst: $(TESTS_DIR)/%.c
+$(TESTS_DIR)/%: $(TESTS_DIR)/%.c
 	$(CC) $(CFLAGS) $< $(SLIB_TARGET) -o $@ $(LIBS)
 
 .PHONY: tests

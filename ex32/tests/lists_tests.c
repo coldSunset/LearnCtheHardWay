@@ -57,7 +57,7 @@ char* test_unshift()
 
 	List_unshift(list, test3); 
 	mu_assert(List_first(list) == test3, "Wrong last value."); 
-	mu_assert(List_last(list) == test3, "Wrong last value (edit).")
+	//mu_assert(List_last(list) == test3, "Wrong last value (edit).")
 	mu_assert(List_count(list) == 3, "Wrong count on unshift"); 
 
 	return NULL; 
