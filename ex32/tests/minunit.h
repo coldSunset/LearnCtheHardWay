@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h> 
-#include <lcthw/dbg.h>
+#include <liblcthw/dbg.h>
+
 #define mu_suite_start() char* message = NULL 
 
 #define mu_assert(test, message) if(!(test)) {log_err(message); return message;}

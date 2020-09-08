@@ -1,5 +1,5 @@
 #include "minunit.h"
-#include <lcthw/list.h> 
+#include <liblcthw/list.h> 
 #include <assert.h>
 
 static List* list = NULL; 
@@ -40,7 +40,7 @@ char* test_push_pop()
 	val = List_pop(list); 
 	mu_assert(val == test2, "wrong value on pop."); 
 
-	vall = List_pop(list); 
+	val = List_pop(list); 
 	mu_assert(val == test1, "Wrong value on pop"); 
 	mu_assert(List_count(list) == 0, "Wrong count after pop."); 
 
@@ -71,5 +71,38 @@ char* test_remove()
 	mu_assert(val == test2, "Wrong removed element"); 
 	mu_assert(List_count(list) == 2, "Wrong first after remove"); 
 
-	mu_assert(List_first(list) == test3, "Wrong first after remove."); 
+	mu_assert(List_first(list) == test3, "Wrong first after remove."); //migth be test1
+	mu_assert(List_last(list) == test1, "Wrong last after remove.");
+
+	return NULL;  
 }
+
+char* test_shift() //remove first item on the List
+{
+	mu_assert(List_count(list) != 0, "Wrong count before shift");
+
+	char* val = List_shift(list); 
+	mu_assert(val == test3, "Wrong value on shift."); //??
+
+	val = List_shift(list); 
+	mu_assert(val == test1, "Wrong value on shift."); 
+	mu_assert(List_count(list) == 0, "Wrong count after shift.")
+
+	return NULL; 
+}
+
+char* all_tests() 
+{
+	mu_suite_start(); 
+
+	mu_run_test(test_create); 
+	mu_run_test(test_push_pop); 
+	mu_run_test(test_unshift); 
+	mu_run_test(test_remove); 
+	mu_run_test(test_shift); 
+	mu_run_test(test_destroy); 
+
+	return NULL; 
+}
+
+RUN_TESTS(all_tests); 

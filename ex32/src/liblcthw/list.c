@@ -1,5 +1,5 @@
-#include <lcthw/list.h>
-#include <lcthw/dbg.h> 
+#include "list.h"
+#include "dbg.h" 
 
 List* List_create() 
 {
@@ -36,7 +36,7 @@ void List_clear_destroy(List* list)
 
 void List_push(List* list, void* value)
 {
-	ListNode* node = calloc(1, sizeof(Listnode)); 
+	ListNode* node = calloc(1, sizeof(ListNode)); 
 	check_mem(node); 
 
 	node->value = value; 
@@ -71,13 +71,13 @@ void List_unshift(List* list, void* value)
 
 	node->value = value; 
 
-	if(list->first = NULL)
+	if(list->first == NULL)
 	{
 		list->first = node; 
 		list->last = node; 
 	}
 	else
-	{
+	{		// put new item at the start of the list
 		node->next = list->first; 
 		list->first->prev = node; 
 		list->first = node; 
@@ -89,7 +89,7 @@ error:
 
 void* List_shift(List* list)
 {
-	ListNode* node = list->first; 
+	ListNode* node = list->first; //remove the first item of the list 
 	return node != NULL ? List_remove(list, node) : NULL; 
 }
 
