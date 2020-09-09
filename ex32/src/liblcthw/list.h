@@ -40,4 +40,10 @@ void* List_remove(List* list, ListNode* node);//removes a node. Frees node
 NULL;\
 for(V= _node = L->S; _node != NULL; V = _node = _node->M)
 
-#endif 
+// EXTRA CREDIT FUNCTIONS 
+
+// Copying 
+// Joining 
+// Splitting
+
+#endif //lcthw_List_h
